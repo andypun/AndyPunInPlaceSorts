@@ -1,115 +1,161 @@
 package AndyPun;
 
 public class SortUtils {
-
-    public int[] randomIntArr(int count) {
-        int[] arr = new int[count];
-        for (int i = 0; i < count; i++) {
-            arr[i] = (int) Math.random() * 1001;
-        }
-
-        return arr;
-    }
-
-    public static double[] randomDoubleArr(int count) {
-        double[] arr = new double[count];
-        for (int i = 0; i < count; i++) {
-            arr[i] = (Math.random() * 1001);
-        }
-        return arr;
-    }
-
-    public String[] randomStringArr(int num, int length) {
-        String[] arr = new String[num];
-        while (num > 0) {
-            int i = 0;
-            String s = "";
-            while (i < length) {
-                char c = (char) ((Math.random() * 26) + 97);
-                s = s + c;
-                i++;
+    public static String[] randomStringArr(int count, int letters)
+    {
+        String[] randomStringArr = new String[count];
+        while (count > 0)
+        {
+            String x = " ";
+            for (int i = 0; i < letters; i++)
+            {
+                char y = (char) ((Math.random() * 26) + 97);
+                x = x + y;
             }
-            num--;
-            arr[num] = s;
+            count--;
+            randomStringArr[count] = x;
         }
-        return arr;
+        return randomStringArr;
     }
 
-    public static void swap(int[] Arr, int i, int j) {
-        int temp = Arr[i];
-        Arr[i] = Arr[j];
-        Arr[j] = temp;
+    public static String[] copyStringArr(String[] StringArr)
+    {
+        String[] copyStringArr = new String[10];
+        for (int n = 0; n < StringArr.length ; n++) {
+            copyStringArr[n] = StringArr[n];
+        }
+        return copyStringArr;
     }
 
-    public static void swapString(String[] arr, int i, int j) {
-        String temp = arr[i];
-        arr[i] = arr[j];
-        arr[j] = temp;
+    public static void swapString(String[] StringArr, int x, int y)
+    {
+        String temp = StringArr[x];
+        StringArr[x] = StringArr[y];
+        StringArr[y] = temp;
     }
 
-    public static boolean isSorted(int[] Arr) {
-        for (int x = 0; x < Arr.length - 1; x++) {
-            if (Arr[x] > Arr[x + 1]) {
-                return true;
+    public static boolean isSortedString(String[] StringArr)
+    {
+        for (int n = 0; n < StringArr.length - 1; n++)
+        {
+            if (0 > StringArr[n+1].compareTo(StringArr[n]))
+            {
+                swapString(StringArr, n, n + 1);
             }
         }
-        return false;
+        return true;
     }
 
-    public static boolean isSortedString(String[] arr) {
-        int len = arr.length - 1;
-        for (int pos = 0; pos < len; pos++) {
-            if ((arr[pos].compareTo(arr[pos + 1])) > 0) {
-                return true;
+    public static double[] randomDoubleArr(int count){
+        double[] randomDoubleArr = new double[count];
+        for(int n = 0; n < count - 1; n++){
+            randomDoubleArr[n] = (Math.random() * 1001);
+            randomDoubleArr[n] = Math.round(randomDoubleArr[n] + 100.0) / 100.0;
+        }
+        return randomDoubleArr;
+    }
+
+    public static double[] copyDoubleArr(double[] doubleArr)
+    {
+        double[] copyDoubleArr = new double[10];
+        for (int n = 0; n < doubleArr.length ; n++) {
+            copyDoubleArr[n] = doubleArr[n];
+        }
+        return copyDoubleArr;
+    }
+
+    public static void swapDouble(double[] doubleArr, int i, int j) {
+        double temp = doubleArr[i];
+        doubleArr[i] = doubleArr[j];
+        doubleArr[j] = temp;
+    }
+
+    public static boolean isSortedDouble(double[] doubleArr)
+    {
+        for (int n = 0; n < doubleArr.length - 1; n++) {
+            if (doubleArr[n] > doubleArr[n + 1]) {
+                swapDouble(doubleArr, n, n + 1);
             }
         }
-        return false;
+        return true;
     }
 
-    public static String checkSum(int[] before, int[] after) {
-        int sum1 = 0;
-        int sum2 = 0;
-        String statement = "";
+    public static boolean checkSumDouble(double[] before, double[] after) {
+        double sumBefore = 0;
+        double sumAfter = 0;
+
         for (int i = 0; i < before.length; i++) {
-            sum1 = sum1 + before[i];
+            sumBefore += before[i];
         }
 
-        for (int i = 0; i < after.length; i++) {
-            sum2 = sum2 + after[i];
+        for (int j = 0; j < after.length; j++) {
+            sumAfter += after[j];
         }
 
-        if (sum1 == sum2) {
-            statement = "The sum before and after sort is equal";
-        } else {
-            statement = "The sum before and after sort is not equal";
+        if (sumBefore == sumAfter) {
+            return true;
+        } else
+            {
+            return false;
         }
-        System.out.println(statement);
-        return statement;
     }
 
-    public static String doubleCheckSum(double[] before, double[] after {
-        double sum1 = 0;
-        double sum2 = 0;
-        String statement = "";
 
-        for (int i = 0; i < before.length; i++)
-        {
-            sum1 = sum1 + before[i];
+    public static int[] randomIntArr(int count){
+        int[] randomIntArr = new int[count];
+        for(int n = 0; n < count - 1; n++){
+            randomIntArr[n] = (int)(Math.random()*1001);
         }
+        return randomIntArr;
+    }
 
-        for (int i = 0; i < after.length; i++)
-        {
-            sum2 = sum2 + after[i];
+    public static int[] copyIntArr(int[] intArr)
+    {
+        int[] copyIntArr = new int[10];
+        for (int n = 0; n < intArr.length ; n++) {
+            copyIntArr[n]= intArr[n];
         }
+        return copyIntArr;
+    }
 
-        if (sum1 == sum2)
+
+    public static void swap(int[] intArr, int x, int y){
+        int temp;
+        temp = intArr[x];
+        intArr[x] = intArr[y];
+        intArr[y] = temp;
+    }
+
+    public static boolean isSorted(int[] intArr)
+    {
+        for (int n = 0; n < intArr.length - 1; n++) {
+            if (intArr[n] > intArr[n + 1]) {
+                swap(intArr, n, n + 1);
+            }
+        }
+        return true;
+    }
+
+    public static boolean checkSum(int[] before, int[] after) {
+        int beforesum = 0;
+        int aftersum = 0;
+        for (int b = 0; b < before.length; b++) {
+            beforesum = beforesum + before[b];
+        }
+        for (int a = 0; a < after.length; a++) {
+            aftersum = aftersum + after[a];
+        }
+        if (aftersum == beforesum)
         {
-            statement = "The sum before and after sort is equal";
+            return true;
         }
         else
         {
-            statement = "The sum before and after sort is not equal";
+            return false;
         }
-        System.out.println(statement);
-        return statement;
+    }
+
+
+
 }
+

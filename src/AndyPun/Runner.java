@@ -1,66 +1,88 @@
 package AndyPun;
 
 public class Runner {
-
     public static void main(String[] args) {
-        String[] testArr ={"this","is","a","test","array"};
+        //BubbleSort
+        String[] stringArr = SortUtils.randomStringArr(10, 3);
 
         System.out.print("Before: ");
-        for  (String str:testArr)
-        {System.out.print(str+" ");}
+        for (String num : stringArr)
+            System.out.print(num + " ");
         System.out.println();
 
         long time = System.nanoTime();
-        InPlaceSorts.bubbleSort(testArr);
+        String[] beforeStringArr = SortUtils.copyStringArr(stringArr);
+        InPlaceSorts.bubbleSort(stringArr);
+
         time = System.nanoTime() - time;
 
         System.out.print("After: ");
-        for (String str:testArr) {
-            System.out.print(str + " ");
+        for (String num : stringArr)
+            System.out.print(num + " ");
+
+        if (SortUtils.isSortedString(stringArr)) {
+            System.out.println();
+            System.out.println("Time taken: " + time);
+            System.out.println();
         }
-        System.out.println();
+        else {
+            System.out.println("Not Sorted Correctly");
+        }
 
-        System.out.println("Time taken: "+time+" nanoseconds");
-
-        /****************************************************/
-
-        int [] testArr2 = {7,5,3,5,2,4,2,1,3,4,4};
+        //SelectionSort
+        double[] doubleArr = SortUtils.randomDoubleArr(10);
 
         System.out.print("Before: ");
-        for  (int num:testArr2)
-        {System.out.print(num+" ");}
+        for (double num : doubleArr)
+            System.out.print(num + " ");
         System.out.println();
 
-        long time2 = System.nanoTime();
-        InPlaceSorts.selectionSort(testArr2);
-        time2 = System.nanoTime() - time2;
+        long timedouble = System.nanoTime();
+        double[] beforeDoubleArr = SortUtils.copyDoubleArr(doubleArr);
+        InPlaceSorts.selectionSort(doubleArr);
+
+        timedouble = System.nanoTime() - timedouble;
 
         System.out.print("After: ");
-        for (int num:testArr2) {
+        for (double num : doubleArr)
             System.out.print(num + " ");
+
+        if (SortUtils.isSortedDouble(doubleArr)) {
+            System.out.println();
+            System.out.println("Time taken: " + timedouble);
+            System.out.println("Same Sum: " + SortUtils.checkSumDouble(beforeDoubleArr, doubleArr));
+            System.out.println();
         }
-        System.out.println();
-        System.out.println("Time taken: "+time2+" nanoseconds");
+        else {
+            System.out.println("Not Sorted Correctly");
+        }
 
-        /*****************************************************/
-
-        int [] testArr3 = {9,4,6,3,2,7,5,4,2,7,31,9};
+        //InsertionSort
+        int[] intArr = SortUtils.randomIntArr(10);
 
         System.out.print("Before: ");
-        for  (int num:testArr3)
-        {System.out.print(num+" ");}
+        for (int num : intArr)
+            System.out.print(num + " ");
         System.out.println();
 
-        long time3 = System.nanoTime();
-        InPlaceSorts.insertionSort(testArr3);
-        time3 = System.nanoTime() - time3;
+        long timesort = System.nanoTime();
+        int[] beforeIntArr = SortUtils.copyIntArr(intArr);
+        InPlaceSorts.insertionSort(intArr);
+
+        timesort = System.nanoTime() - timesort;
 
         System.out.print("After: ");
-        for (int num:testArr3) {
+        for (int num : intArr)
             System.out.print(num + " ");
+
+        if (SortUtils.isSorted(intArr)) {
+            System.out.println();
+            System.out.println("Time taken: " + timesort);
+            System.out.println("Same Sum: " + SortUtils.checkSum(beforeIntArr, intArr));
+            System.out.println();
         }
-        System.out.println();
-        System.out.println("Time taken: "+time3+" nanoseconds");
+        else {
+            System.out.println("Not Sorted Correctly");
+        }
     }
-
 }
